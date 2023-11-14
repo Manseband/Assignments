@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <title>Title Here - High Scores</title>
+    <link rel="stylesheet" href="scores.css">
+    <script src="scores.js"></script> <!-- For now -->
+</head>
+<body>
+    <div id="navbar">
+        <nav>
+            <div class="navdiv">
+                <a href="play.html">PLAY</a>
+            </div>
+            <div class="navdiv">
+                <a href="scores.html">LEADERBOARDS</a>
+            </div>
+            <div class="navdiv">
+                <a href="">IDK</a>
+            </div>
+            <div class="navdiv">
+                <a href="">ABOUT US</a>
+            </div>
+            <div class="navdiv" id="icondiv">
+                <img src="images/dark.png" alt="" onclick="switchModes(this)" width="50px" height="50px" id="modeicon">
+            </div>
+        </nav>
+    </div>
+    <div id="content">
+        <img src="images/cog.png" alt="" width="50px" id="cogicon" onclick="showSettings()">
+        <div class="popupmenu" id="settingsmenu">
+            <h1>SETTINGS</h1>
+            <div class="menurow" id="menurow1">
+                <div class="menucol">
+                    <div class="menuentry">
+                        <h2>Generate Colors</h2>
+                        <h3>Shuffle the color palette every time the game is reset</h3>
+                    </div>
+                </div>
+                <div class="menucol">
+                    <div class="menuinput"><input type="checkbox" id="shufflebox" onclick="shuffleChecked()"></div>
+                </div>
+            </div>
+            <div class="menurow" id="menurow2">
+                <div class="menucol">
+                    <div class="menuentry">
+                        <h2>Select Gamemode</h2>
+                        <h3>Changes will be applied at the start of a new game</h3>
+                    </div>
+                </div>
+                <div class="menucol">
+                    <div class="menuinput"><select type="search">
+                        <option value="mode1">Frenzy</option>
+                        <option value="mode2">Simon</option>
+                        <option value="mode3">Num+Col</option>
+                    </select></div>
+                </div>
+            </div>
+            <div class="menurow" id="menurow3">
+                <div class="menucol">
+                    <div class="menuentry">
+                        <h2>Reset Scores</h2>
+                        <h3>This subheading explains setting 3</h3>
+                    </div>
+                </div>
+                <div class="menucol">
+                    <div class="menuinput"><input type="button" value="Confirm?"></div>
+                </div>
+            </div>
+        </div>
+        <img src="images/info.png" alt="" width="50px" id="instructionsicon" onclick="showInstructions()">
+        <div class="popupmenu" id="instructionsmenu">
+            <h1>HOW TO PLAY</h1>
+            <div class="menurow" id="menurow1">
+                <div class="menuentry">
+                    <h2>Frenzy</h2>
+                    <h3>Memorize the positions of the colors in the limited time. Drag the correct colors into their flashed positions and lock in your guess. The game slowly speeds up, so pay close attention!</h3>
+                </div>
+            </div>
+            <div class="menurow" id="menurow2">
+                <div class="menuentry">
+                    <h2>Simon</h2>
+                    <h3>This paragraph explains Simon</h3>
+                </div>
+            </div>
+            <div class="menurow" id="menurow3">
+                <div class="menuentry">
+                    <h2>Num+Col</h2>
+                    <h3>This paragraph explains Num+Col</h3>
+                </div>
+            </div>
+        </div>
+        <button id="playButton" onclick="restartGame()">Start!</button>
+        <div id="game">
+            <div class="row">
+                <div class="gameShape"></div>
+                <div class="gameShape"></div>
+            </div>
+            <div class="row">
+                <div class="gameShape"></div>
+                <div class="gameShape"></div>
+            </div>
+        </div>
+        <div class="scoreArea">
+            <p id="scoreText">0</p>
+            <p id="highscoreText">0</p>
+        </div>
+        <!-- <div id="clock" onload="showTime()"></div> -->
+    </div>
+    <!-- <footer id="copyright">
+        <p>© The Fun Guys, 2023</p>
+    </footer> -->
+</body>
+</html>
