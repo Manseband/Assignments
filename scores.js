@@ -6,7 +6,8 @@ var timer;
 const timerSteepness = 0.5; // Lower values increase steepness
 var shapeOrder; // An array of divs
 var shapeGuesses; // An array of divs
-var score;
+var score = 0;
+var highscore = 0;
 var guessing;
 
 window.onload = onLoad;
@@ -155,6 +156,7 @@ async function checkShape(div) {
     shapeGuesses.push(div);
     if (shapeGuesses[shapeGuesses.length - 1] != shapeOrder[shapeGuesses.length - 1]) {
         // Lose game (add lose screen)
+        setHighScore(score);
         disallowGuessing();
         showPlayButton(); // Play button allows you to restart the game
     }
@@ -202,6 +204,13 @@ function setShapeColors(name) {
 function setScore(num) {
     score = num;
     document.getElementById("scoreText").innerHTML = score;
+}
+
+function setHighScore(num) {
+    if (num > highscore) {
+        highscore = num;
+        document.getElementById("highscoreText").innerHTML = highscore;
+    }
 }
 
 function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
