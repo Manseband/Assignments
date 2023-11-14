@@ -186,9 +186,15 @@ button:disabled {
     bottom: 20%;
 }
 
-/* .scoreArea p {
+.scoreText {
+    margin-top: 10px;
     font-size: 64;
-} */
+}
+
+.highscoreText {
+    display: inline-block;
+    font-size: 64;
+}
 
 #copyright {
     height: 40px;
