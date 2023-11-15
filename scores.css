@@ -184,16 +184,12 @@ button:disabled {
     position: absolute;
     left: calc(50% - 80px);
     bottom: 10%;
-    border: thin solid black;
+    /* border: thin solid black; */
 }
 
 .scoreArea p {
     font-size: 24px;
     text-align: center;
-}
-
-#highscoreText {
-    display: inline;
 }
 
 #copyright {
