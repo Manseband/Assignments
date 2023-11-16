@@ -6,8 +6,8 @@ var timer;
 const timerSteepness = 0.5; // Lower values increase steepness
 var shapeOrder; // An array of divs
 var shapeGuesses; // An array of divs
-var score = 0;
-var highscore = 0;
+var score = 0; // The score of the current round
+var highscore = 0; // The highscore of the current session
 var guessing;
 
 window.onload = onLoad;
@@ -24,6 +24,10 @@ function onLoad() {
     shuffleArray(colors);
     setShapeColors("gameShape");
     disallowGuessing();
+
+    if (localStorage.getItem("highscore") != null) {
+        setHighScore(localStorage.getItem("highscore"));
+    }
 }
 
 function toggleOnClick() {
@@ -210,6 +214,7 @@ function setHighScore(num) {
     if (num > highscore) {
         highscore = num;
         document.getElementById("highscoreText").innerHTML = highscore;
+        localStorage.setItem("highscore", highscore);
     }
 }
 
