@@ -126,7 +126,7 @@ body {
 }
 
 #content {
-    height: calc(100% - 70px); /* Subtracting height of navbar */
+    height: calc(100% - 130px); /* Subtracting height of navbar and footer */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -192,11 +192,15 @@ button:disabled {
     text-align: center;
 }
 
-#copyright {
-    height: 40px;
-    background-color: coral;
+footer * {
+    margin: 0px;
+    padding: 0px;
+    height: 60px;
+    background-color: white;
 }
 
-#copyright p {
+footer p {
+    margin-top: 20px;
     margin-left: 10px;
+    font-family: settings-font;
 }
