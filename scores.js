@@ -61,6 +61,8 @@ function switchModes(img) {
             current.firstElementChild.style.color = "white"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "gray";
+        document.getElementById("copyright").style.backgroundColor = "black";
+        document.getElementById("copyright").style.color = "white";
 
         document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
@@ -76,6 +78,8 @@ function switchModes(img) {
             current.firstElementChild.style.color = "black"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "lightgray";
+        document.getElementById("copyright").style.backgroundColor = "white";
+        document.getElementById("copyright").style.color = "black";
 
         document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
@@ -101,18 +105,21 @@ function showInstructions() {
     }
 }
 
-function restartGame() {
+async function restartGame() {
     document.getElementById("playButton").disabled = true;
     shapeGuesses = [];
     shapeOrder = [];
     setScore(0);
     timer = 1 * 1000;
+    checkShuffle();
+    await sleep(1.0 * 1000); // Wait one second after clicking the Start button
     flashShapes();
 }
 
-function goNextRound() {
+async function goNextRound() {
     shapeGuesses = []; // Only reset the current shape guesses
     timer = (1.75 * (timerSteepness**score) + 0.25) * 1000; // Time as a function of score (starts at 2, tends to 0.25). Tweaking timerSteepness will change the steepness of the time decrease.
+    await sleep(0.8 * 1000); // Add a small delay in between rounds
     flashShapes();
 }
 
@@ -168,7 +175,6 @@ async function checkShape(div) {
         // Win round
         setScore(score + 1);
         disallowGuessing();
-        await sleep(0.8 * 1000); // Add a small delay in between rounds
         goNextRound();
     }
 }
@@ -177,7 +183,7 @@ function showPlayButton() {
     document.getElementById("playButton").disabled = false;
 }
 
-function shuffleChecked() {
+function checkShuffle() {
     if (document.getElementById("shufflebox").checked) {
         for (let i = 0; i < colors.length; i++) {
             colors[i] = genRandomColor();
@@ -186,6 +192,7 @@ function shuffleChecked() {
     }
     else {
         colors = ["red", "green", "orange", "blue"];
+        setShapeColors("gameShape");
     }
 }
 

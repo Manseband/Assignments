@@ -35,6 +35,8 @@ function switchModes(img) {
             current.firstElementChild.style.color = "white"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "gray";
+        document.getElementById("copyright").style.backgroundColor = "black";
+        document.getElementById("copyright").style.color = "white";
 
         document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
@@ -50,6 +52,8 @@ function switchModes(img) {
             current.firstElementChild.style.color = "black"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "lightgray";
+        document.getElementById("copyright").style.backgroundColor = "white";
+        document.getElementById("copyright").style.color = "black";
 
         document.getElementById("modeicon").style.transform = "translateX(0px)";
     }

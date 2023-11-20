@@ -18,11 +18,11 @@ body {
 }
 
 #navbar {
-    height: 50px;
+    height: 40px;
     background-color: white;
     font-family: nav-font;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     padding: 10px;
 }
 
@@ -37,8 +37,8 @@ body {
 }
 
 #icondiv {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     float: left;
     border-right: none; /* Overwrite the border for the icon */
 }
@@ -49,11 +49,11 @@ body {
 }
 
 #content {
-    height: calc(100% - 130px); /* Subtracting height of navbar and footer */
+    height: calc(100% - 120px); /* Subtracting height of navbar and footer */
     width: 100%; /* Why is this necessary? */
     display: inline-grid;
     grid-template-columns: [left-icon] 80px [left-space] auto [game] 360px [right-space] auto [right-icon] 80px;
-    grid-template-rows: [icons] 80px [startbutton] 80px [game] auto [score] 200px;
+    grid-template-rows: [icons] 80px [startbutton] 80px [game] auto [score] 160px;
     align-items: center;
     background-color: lightgray;
 }
@@ -152,7 +152,6 @@ button:disabled {
     margin-top: 20px;
 }
 
-/* TODO find a way to more efficiently do this, maybe through javascript */
 #menurow1 {
     background-color: rgb(163, 163, 163);
 }
@@ -200,6 +199,8 @@ button:disabled {
 .scoreArea p {
     font-size: 24px;
     text-align: center;
+    font-family: settings-font;
+    margin: 15px;
 }
 
 footer * {
@@ -210,7 +211,7 @@ footer * {
 }
 
 footer p {
-    margin-top: 20px;
-    margin-left: 10px;
+    padding-top: 20px;
+    padding-left: 10px;
     font-family: settings-font;
 }

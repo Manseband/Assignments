@@ -15,30 +15,30 @@
                 <a href="scores.html">LEADERBOARDS</a>
             </div>
             <div class="navdiv">
-                <a href="">IDK</a>
+                <a href="">TESTIMONIALS</a>
             </div>
             <div class="navdiv">
                 <a href="">ABOUT US</a>
             </div>
             <div class="navdiv" id="icondiv">
-                <img src="images/dark.png" alt="" onclick="switchModes(this)" width="50px" height="50px" id="modeicon">
+                <img src="images/dark.png" alt="" onclick="switchModes(this)" width="40px" height="40px" id="modeicon">
             </div>
         </nav>
     </div>
     <div id="content">
-        <img src="images/cog.png" alt="" width="50px" id="cogicon" onclick="showSettings()">
+        <img src="images/cog.png" alt="" width=40px" id="cogicon" onclick="showSettings()">
         <button id="playButton" onclick="restartGame()">Start!</button>
         <div class="popupmenu" id="settingsmenu">
             <h1>SETTINGS</h1>
             <div class="menurow" id="menurow1">
                 <div class="menucol">
                     <div class="menuentry">
-                        <h2>Generate Colors</h2>
-                        <h3>Shuffle the color palette every time the game is reset</h3>
+                        <h2>Shuffle Colors</h2>
+                        <h3>Generate a new color palette when the game is reset</h3>
                     </div>
                 </div>
                 <div class="menucol">
-                    <div class="menuinput"><input type="checkbox" id="shufflebox" onclick="shuffleChecked()"></div>
+                    <div class="menuinput"><input type="checkbox" id="shufflebox"></div>
                 </div>
             </div>
             <div class="menurow" id="menurow2">
@@ -50,17 +50,17 @@
                 </div>
                 <div class="menucol">
                     <div class="menuinput"><select type="search">
-                        <option value="mode1">Frenzy</option>
+                        <option value="mode1">Memory</option>
                         <option value="mode2">Simon</option>
-                        <option value="mode3">Num+Col</option>
+                        <option value="mode3">Frenzy</option>
                     </select></div>
                 </div>
             </div>
             <div class="menurow" id="menurow3">
                 <div class="menucol">
                     <div class="menuentry">
-                        <h2>Reset Scores</h2>
-                        <h3>This subheading explains setting 3</h3>
+                        <h2>Reset High Score</h2>
+                        <h3>Delete your saved high score from this session</h3>
                     </div>
                 </div>
                 <div class="menucol">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <img src="images/info.png" alt="" width="50px" id="instructionsicon" onclick="showInstructions()">
+        <img src="images/info.png" alt="" width="40px" id="instructionsicon" onclick="showInstructions()">
         <div class="popupmenu" id="instructionsmenu">
             <h1>HOW TO PLAY</h1>
             <div class="menurow" id="menurow1">
@@ -106,8 +106,8 @@
         </div>
         <!-- <div id="clock" onload="showTime()"></div> -->
     </div>
-    <footer class="footer">
-        <p>© The Fun Guys, 2023</p>
+    <footer>
+        <p id="copyright">© The Fun Guys, 2023</p>
     </footer>
 </body>
 </html>
