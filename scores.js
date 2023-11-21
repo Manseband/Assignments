@@ -105,6 +105,10 @@ function showInstructions() {
     }
 }
 
+function resetScore() {
+    setHighScore(0);
+}
+
 async function restartGame() {
     document.getElementById("playButton").disabled = true;
     shapeGuesses = [];
@@ -167,7 +171,9 @@ async function checkShape(div) {
     shapeGuesses.push(div);
     if (shapeGuesses[shapeGuesses.length - 1] != shapeOrder[shapeGuesses.length - 1]) {
         // Lose game (add lose screen)
-        setHighScore(score);
+        if (score > highscore) {
+            setHighScore(score);
+        } 
         disallowGuessing();
         showPlayButton(); // Play button allows you to restart the game
     }
@@ -218,11 +224,9 @@ function setScore(num) {
 }
 
 function setHighScore(num) {
-    if (num > highscore) {
-        highscore = num;
-        document.getElementById("highscoreText").innerHTML = highscore;
-        localStorage.setItem("highscore", highscore);
-    }
+    highscore = num;
+    document.getElementById("highscoreText").innerHTML = highscore;
+    localStorage.setItem("highscore", highscore);
 }
 
 function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
