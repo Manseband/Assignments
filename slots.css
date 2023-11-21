@@ -1,5 +1,5 @@
 html, body {
-    height: 100%; /* Necessary for flexbox centering, get rid of this? */
+    height: 100%; /* Necessary for flexbox centering */
 }
 
 body {
@@ -48,22 +48,10 @@ body {
     transition: 0.3s;
 }
 
-#content {
-    height: calc(100% - 120px); /* Subtracting height of navbar and footer */
-    width: 100%; /* Why is this necessary? */
-    display: inline-grid;
-    grid-template-columns: [left-icon] 80px [left-space] auto [game] 360px [right-space] auto [right-icon] 80px;
-    grid-template-rows: [icons] 80px [startbutton] 80px [game] auto [score] 160px;
-    align-items: center;
-    background-color: lightgray;
-}
-
 #cogicon {
-    grid-column-start: left-icon;
-    grid-column-end: left-space;
-    grid-row-start: icons;
-    grid-row-end: startbutton;
-    margin: auto;
+    position: absolute;
+    left: 10px;
+    top: 80px;
     transition: 0.3s;
 }
 
@@ -71,36 +59,10 @@ body {
     transform: rotate(90deg);
 }
 
-button {
-    border: 1px solid #999999;
-    border-radius: 8px;
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    background-color: brown;
-    color: white;
-}
-
-button:disabled {
-    background-color: #cccccc;
-    color: #666666;
-}
-
-#playButton {
-    grid-column-start: game;
-    grid-column-end: right-space;
-    grid-row-start: startbutton;
-    grid-row-end: game;
-    width: 120px;
-    margin: auto;
-}
-
 #instructionsicon {
-    grid-column-start: right-icon;
-    grid-row-start: icons;
-    grid-row-end: startbutton;
-    margin: auto;
+    position: absolute;
+    right: 10px;
+    top: 80px;
     transition: 0.3s;
 }
 
@@ -110,8 +72,6 @@ button:disabled {
 
 .popupmenu {
     position: absolute;
-    left: 0;
-    right: 0;
     margin: auto;
     width: 800px;
     height: 600px;
@@ -121,7 +81,7 @@ button:disabled {
     padding: 20px;
     visibility: hidden;
     background-color: rgb(190, 190, 190);
-    opacity: 90%;
+    opacity: 0.9;
     border-radius: 10px;
     font-family: settings-font;
     z-index: 1;
@@ -164,14 +124,44 @@ button:disabled {
     background-color: rgb(163, 163, 163);
 }
 
+#content {
+    height: calc(100% - 120px); /* Subtracting height of navbar */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: lightgray;
+}
+
+button {
+    position: absolute;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: brown;
+    color: white;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+#playButton {
+    left: calc(50% - 48px);
+    top: 250px;
+}
+
+#guessButton {
+    left: calc(50% - 54px);
+    bottom: 180px;
+}
+
 #game {
-    grid-column-start: game;
-    grid-column-end: right-space;
-    grid-row-start: game;
-    grid-row-end: score;
     width: 360px;
     height: 360px;
-    margin: auto; /* Center just the game */
     border: 2px dashed black;
 }
 
@@ -182,25 +172,25 @@ button:disabled {
     margin: 0px;
 }
 
-.gameShape {
+.row div {
     width: 100%;
     border: thin solid lightgray;
     transition: 0.3s;
-    opacity: 0.5;
 }
 
-.scoreArea {
-    grid-column-start: game;
-    grid-column-end: right-space;
-    grid-row-start: score;
-    border: thin solid black;
+.gameShape {
+    background-color: black;
 }
 
-.scoreArea p {
-    font-size: 24px;
-    text-align: center;
-    font-family: settings-font;
-    margin: 15px;
+.shapeContainer {
+    width: 180px;
+    height: 360px;
+    border: 2px dashed black;
+}
+
+.dragShape {
+    cursor: move;
+    transition: 0.3s;
 }
 
 footer * {

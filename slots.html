@@ -1,24 +1,24 @@
 <!doctype html>
 <html>
 <head>
-    <title>Title Here - High Scores</title>
-    <link rel="stylesheet" href="scores.css">
-    <script src="scores.js"></script> <!-- For now -->
+    <title>Title Here - Play</title>
+    <link rel="stylesheet" href="slots.css">
+    <script src="slots.js"></script>
 </head>
 <body>
     <div id="navbar">
         <nav>
             <div class="navdiv">
-                <a href="index.html">PLAY</a>
+                <a href="">PLAY</a>
             </div>
             <div class="navdiv">
-                <a href="scores.html">LEADERBOARDS</a>
+                <a href="lb.html">LEADERBOARDS</a>
             </div>
             <div class="navdiv">
-                <a href="">TESTIMONIALS</a>
+                <a href="tests.html">TESTIMONIALS</a>
             </div>
             <div class="navdiv">
-                <a href="">ABOUT US</a>
+                <a href="about.html">ABOUT US</a>
             </div>
             <div class="navdiv" id="icondiv">
                 <img src="images/dark.png" alt="" onclick="switchModes(this)" width="40px" height="40px" id="modeicon">
@@ -26,19 +26,18 @@
         </nav>
     </div>
     <div id="content">
-        <img src="images/cog.png" alt="" width=40px" id="cogicon" onclick="showSettings()">
-        <button id="playButton" onclick="restartGame()">Start!</button>
+        <img src="images/cog.png" alt="" width="40px" id="cogicon" onclick="showSettings()">
         <div class="popupmenu" id="settingsmenu">
             <h1>SETTINGS</h1>
             <div class="menurow" id="menurow1">
                 <div class="menucol">
                     <div class="menuentry">
-                        <h2>Shuffle Colors</h2>
-                        <h3>Generate a new color palette when the game is reset</h3>
+                        <h2>Generate Colors</h2>
+                        <h3>Shuffle the color palette every time the game is reset</h3>
                     </div>
                 </div>
                 <div class="menucol">
-                    <div class="menuinput"><input type="checkbox" id="shufflebox"></div>
+                    <div class="menuinput"><input type="checkbox" id="shufflebox" onclick="shuffleChecked()"></div>
                 </div>
             </div>
             <div class="menurow" id="menurow2">
@@ -90,6 +89,15 @@
                 </div>
             </div>
         </div>
+        <button id="playButton" onclick="restartGame()">Start!</button>
+        <div class="shapeContainer">
+            <div class="row">
+                <div class="dragShape" id="dragOne"></div>
+            </div>
+            <div class="row">
+                <div class="dragShape" id="dragTwo"></div>
+            </div>
+        </div>
         <div id="game">
             <div class="row">
                 <div class="gameShape"></div>
@@ -100,10 +108,15 @@
                 <div class="gameShape"></div>
             </div>
         </div>
-        <div class="scoreArea">
-            <p>Current Score: <span id="scoreText">0</span></p>
-            <p>High Score: <span id="highscoreText">0</span></p>
+        <div class="shapeContainer">
+            <div class="row">
+                <div class="dragShape" id="dragThree"></div>
+            </div>
+            <div class="row">
+                <div class="dragShape" id="dragFour"></div>
+            </div>
         </div>
+        <button id="guessButton" onclick="checkGuess()">Guess!</button>
         <!-- <div id="clock" onload="showTime()"></div> -->
     </div>
     <footer>

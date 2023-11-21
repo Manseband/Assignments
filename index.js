@@ -2,10 +2,13 @@ var dark = false;
 var showingSettings = false;
 var showingInstructions = false;
 var colors = ["red", "green", "orange", "blue"];
-var timer = 2 * 1000;
-var timerDecrease = 0.1 * 1000;
-var timerMinimum = 0.5 * 1000;
-var score = 0;
+var timer;
+const timerSteepness = 0.5; // Lower values increase steepness
+var shapeOrder; // An array of divs
+var shapeGuesses; // An array of divs
+var score = 0; // The score of the current round
+var highscore = 0; // The highscore of the current session
+var guessing;
 
 window.onload = onLoad;
 
@@ -17,8 +20,31 @@ function onLoad() {
             inputs[i].checked = false;
         }
     }
+    
+    shuffleArray(colors);
+    setShapeColors("gameShape");
+    disallowGuessing();
 
-    setShapeColors("dragShape");
+    if (localStorage.getItem("highscore") != null) {
+        setHighScore(localStorage.getItem("highscore"));
+    }
+}
+
+function toggleOnClick() {
+    var gameShapes = document.getElementsByClassName("gameShape");
+    if (!guessing) {
+        // Disable the onclick property so that the user can only click during the guessing period
+        for (let i = 0; i < gameShapes.length; i++) {
+            gameShapes[i].onclick = null;
+        }
+    }
+    else {
+        for (let i = 0; i < gameShapes.length; i++) {
+            gameShapes[i].onclick = function() {
+                checkShape(gameShapes[i]); // Allow each game shape to be clicked
+            };
+        }
+    }
 }
 
 function switchModes(img) {
@@ -79,37 +105,100 @@ function showInstructions() {
     }
 }
 
-function restartGame() {
-    document.getElementById("playButton").disabled = true;
-    if (document.getElementById("shufflebox").checked) {
-        for (let i = 0; i < colors.length; i++) {
-            colors[i] = genRandomColor();
-        }
-        setShapeColors("dragShape");
-    }
-    shuffleArray(colors);
-    setShapeColors("gameShape");
-    setTimeout(hideShapes, timer);
+function resetScore() {
+    setHighScore(0);
 }
 
-function hideShapes() {
-    var gameShapes = document.getElementsByClassName("gameShape");
-    for (let i = 0; i < gameShapes.length; i++) {
-        gameShapes[i].style.backgroundColor = "black";
+async function restartGame() {
+    document.getElementById("playButton").disabled = true;
+    shapeGuesses = [];
+    shapeOrder = [];
+    setScore(0);
+    timer = 1 * 1000;
+    checkShuffle();
+    await sleep(1.0 * 1000); // Wait one second after clicking the Start button
+    flashShapes();
+}
+
+async function goNextRound() {
+    shapeGuesses = []; // Only reset the current shape guesses
+    timer = (1.75 * (timerSteepness**score) + 0.25) * 1000; // Time as a function of score (starts at 2, tends to 0.25). Tweaking timerSteepness will change the steepness of the time decrease.
+    await sleep(0.8 * 1000); // Add a small delay in between rounds
+    flashShapes();
+}
+
+async function flashShapes() {
+    if (shapeOrder.length > 0) { // First, check if we already have shapes stored, and go through those first
+        for (let i = 0; i < shapeOrder.length; i++) {
+            var randShape = shapeOrder[i];
+            randShape.style.opacity = "1.0";
+            await sleep(timer).then(function() {
+                randShape.style.opacity = "0.5";
+            });
+            await sleep(0.3 * 1000);
+        }
     }
-    timer = Math.max(timer - timerDecrease, timerMinimum);
-    setTimeout(showPlayButton, timer); // For now
+    // After we're finished, we generate a new shape
+    var gameShapes = document.getElementsByClassName("gameShape");
+    var randShape = gameShapes[genRandomInteger(0, 3)];
+    shapeOrder.push(randShape);
+
+    randShape.style.opacity = "1.0";
+    await sleep(timer).then(function() {
+        randShape.style.opacity = "0.5";
+    });
+    await sleep(0.3 * 1000); // Little grace period after unflashing in case it choose the same shape again so the transition finishes
+    allowGuessing();
+}
+
+function allowGuessing() {
+    guessing = true;
+    toggleOnClick();
+}
+
+function disallowGuessing() {
+    guessing = false;
+    toggleOnClick();
+}
+
+async function checkShape(div) {
+    // Quickly flash the shape that is clicked
+    div.style.opacity = "1.0";
+    await sleep(200).then(function() {
+        div.style.opacity = "0.5";
+    });
+
+    shapeGuesses.push(div);
+    if (shapeGuesses[shapeGuesses.length - 1] != shapeOrder[shapeGuesses.length - 1]) {
+        // Lose game (add lose screen)
+        if (score > highscore) {
+            setHighScore(score);
+        } 
+        disallowGuessing();
+        showPlayButton(); // Play button allows you to restart the game
+    }
+    else if (shapeGuesses.length == shapeOrder.length) { // If the player got to the final shape correctly
+        // Win round
+        setScore(score + 1);
+        disallowGuessing();
+        goNextRound();
+    }
 }
 
 function showPlayButton() {
     document.getElementById("playButton").disabled = false;
 }
 
-function shuffleChecked() {
-    if (!document.getElementById("shufflebox").checked) {
+function checkShuffle() {
+    if (document.getElementById("shufflebox").checked) {
+        for (let i = 0; i < colors.length; i++) {
+            colors[i] = genRandomColor();
+        }
+        setShapeColors("gameShape");
+    }
+    else {
         colors = ["red", "green", "orange", "blue"];
-
-        setShapeColors("dragShape");
+        setShapeColors("gameShape");
     }
 }
 
@@ -120,6 +209,24 @@ function shuffleArray(array) {
         array[i] = array[j];
         array[j] = temp;
     }
+}
+
+function setShapeColors(name) {
+    var shapes = document.getElementsByClassName(name);
+    for (let i = 0; i < shapes.length; i++) {
+        shapes[i].style.backgroundColor = colors[i];
+    }
+}
+
+function setScore(num) {
+    score = num;
+    document.getElementById("scoreText").innerHTML = score;
+}
+
+function setHighScore(num) {
+    highscore = num;
+    document.getElementById("highscoreText").innerHTML = highscore;
+    localStorage.setItem("highscore", highscore);
 }
 
 function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
@@ -133,9 +240,12 @@ function genRandomColor() { /* Hard mode: have the colors be "closer" to each ot
     return color;
 }
 
-function setShapeColors(name) {
-    var shapes = document.getElementsByClassName(name);
-    for (let i = 0; i < shapes.length; i++) {
-        shapes[i].style.backgroundColor = colors[i];
-    }
+function genRandomInteger(min, max) { // Min inclusive, max inclusive
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
