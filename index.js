@@ -20,14 +20,20 @@ function onLoad() {
             inputs[i].checked = false;
         }
     }
-    
-    shuffleArray(colors);
-    setShapeColors("gameShape");
-    disallowGuessing();
+
+    var select = document.getElementById("modeselect");
+    select.value = "1"; // Reset the dropdown
+    select.addEventListener("change", function() {
+        changeMode(this.value);
+    });
 
     if (localStorage.getItem("highscore") != null) {
         setHighScore(localStorage.getItem("highscore"));
     }
+    
+    shuffleArray(colors);
+    setShapeColors("gameShape");
+    disallowGuessing();
 }
 
 function toggleOnClick() {
@@ -105,8 +111,18 @@ function showInstructions() {
     }
 }
 
-function resetScore() {
-    setHighScore(0);
+function changeMode(num) {
+    switch (num) {
+        case "1":
+            document.location.href = "index.html";
+            break;
+        case "2":
+            document.location.href = "slots.html";
+            break;
+        case "3":
+            document.location.href = "dynamo.html";
+            break;
+    }
 }
 
 async function restartGame() {
@@ -227,6 +243,10 @@ function setHighScore(num) {
     highscore = num;
     document.getElementById("highscoreText").innerHTML = highscore;
     localStorage.setItem("highscore", highscore);
+}
+
+function resetScore() {
+    setHighScore(0);
 }
 
 function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
