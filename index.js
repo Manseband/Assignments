@@ -22,7 +22,15 @@ function onLoad() {
     }
 
     var select = document.getElementById("modeselect");
-    select.value = "1"; // Reset the dropdown
+    switch (document.location.href.split("/").slice(-1)[0]) { // Splits the name of the html file from the full URL
+        case "index.html":
+            select.value = "1";
+            break;
+        case "frenzy.html":
+            select.value = "2";
+            break;
+    }
+    // Call the changeMode function when a select event is detected
     select.addEventListener("change", function() {
         changeMode(this.value);
     });
@@ -53,7 +61,7 @@ function toggleOnClick() {
     }
 }
 
-function switchModes(img) {
+function switchTheme(img) {
     dark = !dark;
     if (dark) {
         img.src = "images/light.png";
@@ -117,10 +125,7 @@ function changeMode(num) {
             document.location.href = "index.html";
             break;
         case "2":
-            document.location.href = "slots.html";
-            break;
-        case "3":
-            document.location.href = "dynamo.html";
+            document.location.href = "frenzy.html";
             break;
     }
 }
@@ -234,6 +239,17 @@ function setShapeColors(name) {
     }
 }
 
+function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
+    var letters = "0123456789ABCDEF".split("");
+    var color = "#";
+    var brightness = 15; /* The higher the number the brighter the color (up to 15) */
+    var chars = 6;
+    for (var i = 0; i < chars; i++) {
+        color += letters[Math.round(Math.random() * Math.min(brightness, 15))];
+    }
+    return color;
+}
+
 function setScore(num) {
     score = num;
     document.getElementById("scoreText").innerHTML = score;
@@ -247,17 +263,6 @@ function setHighScore(num) {
 
 function resetScore() {
     setHighScore(0);
-}
-
-function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
-    var letters = "0123456789ABCDEF".split("");
-    var color = "#";
-    var brightness = 15; /* The higher the number the brighter the color (up to 15) */
-    var chars = 6;
-    for (var i = 0; i < chars; i++) {
-        color += letters[Math.round(Math.random() * Math.min(brightness, 15))];
-    }
-    return color;
 }
 
 function genRandomInteger(min, max) { // Min inclusive, max inclusive

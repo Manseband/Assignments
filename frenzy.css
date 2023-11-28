@@ -24,7 +24,6 @@ body {
     align-items: center; 
     justify-content: center;
     margin: 5px;
-    position: relative;
 }
 
 .gamecontainer {
@@ -113,17 +112,6 @@ body {
 }
 
 #result {
-    grid-column-start: guesses;
-    grid-column-end: right-space;
-    grid-row-start: startbutton;
-    grid-row-end: game;
-
-    font-family: 'Poppins', sans-serif;
-    color:  rgb(54, 134, 255);
-    margin: auto;
-}
-
-#result2 {
     grid-column-start: game;
     grid-column-end: guesses;
     grid-row-start: score;
@@ -136,7 +124,7 @@ body {
     width: 150px;
     color: rgb(126, 178, 255);
     text-align: center;
-    background-color: #000000;
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -186,7 +174,7 @@ body {
 
 #content {
     height: calc(100% - 120px); /* Subtracting height of navbar and footer */
-    width: 100%; /* Why is this necessary? */
+    width: 100%;
     display: inline-grid;
     grid-template-columns: [left-icon] 80px [left-space] auto [game] 600px [guesses] 600px [right-space] auto [right-icon] 80px;
     grid-template-rows: [icons] 80px [startbutton] 80px [game] auto [score] 80px [checkbutton] 80px;
@@ -353,4 +341,17 @@ body {
     font-size: 16px;
     background-color: brown;
     color: white;
+}
+
+footer * {
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    background-color: white;
+}
+
+footer p {
+    padding-top: 20px;
+    padding-left: 10px;
+    font-family: settings-font;
 }

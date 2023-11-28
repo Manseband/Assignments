@@ -1,13 +1,41 @@
-let highscore = parseInt(localStorage.getItem('highscore')) || 0;
+var highscore = parseInt(localStorage.getItem('highscore')) || 0;
 var showingSettings = false;
 var showingInstructions = false;
 var dark = false;
 
-function startup() {
-    const result2Element = document.getElementById("result2");
-    result2Element.textContent = `Your HIGH SCORE: ${highscore}`;
+window.onload = onLoad;
+
+function onLoad() {
+    // Uncheck all checkboxes on page load (they may have been checked from before)
+    var inputs = document.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++)  {
+        if (inputs[i].type == "checkbox") {
+            inputs[i].checked = false;
+        }
+    }
+
+    var select = document.getElementById("modeselect");
+    switch (document.location.href.split("/").slice(-1)[0]) { // Splits the name of the html file from the full URL
+        case "index.html":
+            select.value = "1";
+        case "frenzy.html":
+            select.value = "2";
+    }
+    // Call the changeMode function when a select event is detected
+    select.addEventListener("change", function() {
+        changeMode(this.value);
+    });
+
+    document.getElementById("shufflebox").disabled = "true"; // Disable shuffling colors in this mode
+
+    startup();
 }
 
+
+function startup() {
+    const resultElement = document.getElementById("result");
+    resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
+}
 
 
 function shuffleArray(array) {
@@ -85,11 +113,9 @@ function getNumberForColor(color) {
 
 function checkGuessNumbers() {
 
-
     computerguesses.push(getNumberForColor('blue'), getNumberForColor('red'), getNumberForColor('green'), getNumberForColor('orange'));
 
     const resultElement = document.getElementById("result");
-    const result2Element = document.getElementById("result2");
     let correctGuess = true;
 
 
@@ -124,18 +150,20 @@ function checkGuessNumbers() {
             localStorage.setItem('highscore', highscore);
         }
         timer -= 500;
-        resultElement.textContent = "Correct guess!";
-        resultElement.style.color = "green";
-        result2Element.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
+        resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
         startgame();
     } else {
         timer = 5000;
         score = 0;
-        resultElement.textContent = "Incorrect guess. Try again!";
-        resultElement.style.color = "red";
-        result2Element.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
+        resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
         startgame();
     }
+}
+
+function resetScore() {
+    highscore = 0;
+    localStorage.setItem('highscore', 0);
+    document.getElementById("result").textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
 }
 
 function getSelectedRadioValue(name) {
@@ -157,8 +185,7 @@ function getAssignedNumber(color) {
     return null;
 }
 
-
-function switchModes(img) {
+function switchTheme(img) {
     dark = !dark;
     if (dark) {
         img.src = "images/light.png";
@@ -172,6 +199,9 @@ function switchModes(img) {
             current.firstElementChild.style.color = "white"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "gray";
+        document.getElementById("result").style.backgroundColor = "black";
+        document.getElementById("copyright").style.backgroundColor = "black";
+        document.getElementById("copyright").style.color = "white";
 
         document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
@@ -187,12 +217,13 @@ function switchModes(img) {
             current.firstElementChild.style.color = "black"; // Gets each hyperlink of each navdiv
         }
         document.getElementById("content").style.backgroundColor = "lightgray";
+        document.getElementById("result").style.backgroundColor = "white";
+        document.getElementById("copyright").style.backgroundColor = "white";
+        document.getElementById("copyright").style.color = "black";
 
         document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
-
-
 
 function showInstructions() {
     showingInstructions = !showingInstructions;
@@ -214,87 +245,13 @@ function showSettings() {
     }
 }
 
-var selectedgamemode = " ";
-
-function changeGameMode(selectElement) {
-    var selectedValue = selectElement.value;
-
-    if (selectedValue === "mode1") {
-        selectedgamemode = "mode1";
-
-    } else if (selectedValue === "mode2") {
-        selectedgamemode = "mode2";
-
-    } else if (selectedValue === "mode3") {
-        selectedgamemode = "mode3";
-    }
-    else {
-        selectedgamemode = "mode3";
-    }
-
-    
-}
-
-function saveGameMode(){
-    if (selectedgamemode == "mode1"){
-        gamemode1();
-    }
-    else if (selectedgamemode == "mode2"){
-        gamemode2();
-    }
-    else if (selectedgamemode == "mode3"){
-        gamemode3(); 
-    }
-    else {
-        gamemode3();
-    }
-}
-
-
-
-function gamemode3() {
-    window.location.href = "mode3.html"
-}
-
-function gamemode1() {
-    window.location.href = "index.html"
-}
-
-function gamemode2(){
-    window.location.href = "mode2.html"
-}
-
-
-function switchModes(img) {
-    dark = !dark;
-    if (dark) {
-        img.src = "images/light.png";
-        document.getElementById("navbar").style.backgroundColor = "black";
-        var navdivs = document.getElementsByClassName("navdiv");
-        for (var i = 0; i < navdivs.length; i++) {
-            var current = navdivs[i];
-            if (current.getAttribute("id") != "icondiv") { // Skip the border overwrite for the icondiv, we don't want a border for that element
-                current.style.borderRight = "4px solid gray";
-            }
-            current.firstElementChild.style.color = "white"; // Gets each hyperlink of each navdiv
-        }
-        document.getElementById("content").style.backgroundColor = "darkgray";
-
-        document.getElementById("modeicon").style.transform = "translateX(35px)";
-    }
-    else {
-        img.src = "images/dark.png";
-        document.getElementById("navbar").style.backgroundColor = "lightgray";
-        var navdivs = document.getElementsByClassName("navdiv");
-        for (var i = 0; i < navdivs.length; i++) {
-            var current = navdivs[i];
-            if (current.getAttribute("id") != "icondiv") {
-                current.style.borderRight = "4px solid black";
-            }
-            current.firstElementChild.style.color = "black"; // Gets each hyperlink of each navdiv
-        }
-        document.getElementById("content").style.backgroundColor = "white";
-
-        document.getElementById("modeicon").style.transform = "translateX(0px)";
+function changeMode(num) {
+    switch (num) {
+        case "1":
+            document.location.href = "index.html";
+            break;
+        case "2":
+            document.location.href = "frenzy.html";
+            break;
     }
 }

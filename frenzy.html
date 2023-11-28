@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game mode 3</title>
-    <script src="dynamo.js"></script>
-    <link rel="stylesheet" href="dynamo.css">
+    <script src="frenzy.js"></script>
+    <link rel="stylesheet" href="frenzy.css">
 </head>
 <body>
     <div id="navbar">
@@ -23,7 +23,7 @@
                 <a href="about.html">ABOUT US</a>
             </div>
             <div class="navdiv" id="icondiv">
-                <img src="images/dark.png" alt="" onclick="switchModes(this)" width="40px" height="40px" id="modeicon">
+                <img src="images/dark.png" alt="" onclick="switchTheme(this)" width="40px" height="40px" id="modeicon">
             </div>
         </nav>
     </div>
@@ -52,8 +52,7 @@
                 <div class="menucol">
                     <div class="menuinput"><select id="modeselect">
                         <option value="1">Simon</option>
-                        <option value="2">Slots</option>
-                        <option value="3">Dynamo</option>
+                        <option value="2">Frenzy</option>
                     </select></div>
                 </div>
             </div>
@@ -69,26 +68,26 @@
                 </div>
             </div>
         </div>
-        <button id="startgame" onclick="startgame()">Start game</button>
+        <button id="startgame" onclick="startgame()">Start Game</button>
         <img src="images/info.png" alt="" width="40px" id="instructionsicon" onclick="showInstructions()">
         <div class="popupmenu" id="instructionsmenu">
             <h1>HOW TO PLAY</h1>
             <div class="menurow" id="menurow1">
                 <div class="menuentry">
-                    <h2>Frenzy</h2>
-                    <h3>Memorize the positions of the colors in the limited time. Drag the correct colors into their flashed positions and lock in your guess. The game slowly speeds up, so pay close attention!</h3>
+                    <h2>Simon</h2>
+                    <h3>Follow the pattern of randomly generated colors by clicking the squares in the order they are flashed. The game slowly speeds up as more colors are added, so pay close attention!</h3>
                 </div>
             </div>
             <div class="menurow" id="menurow2">
                 <div class="menuentry">
-                    <h2>Simon</h2>
-                    <h3>This paragraph explains Simon</h3>
+                    <h2>Frenzy</h2>
+                    <h3>Memorize the mappings of numbers on their colors and respond with the correct combinations.</h3>
                 </div>
             </div>
             <div class="menurow" id="menurow3">
                 <div class="menuentry">
-                    <h2>Num+Col</h2>
-                    <h3>This paragraph explains Num+Col</h3>
+                    <h2>&nbsp</h2>
+                    <h3>&nbsp</h3>
                 </div>
             </div>
         </div>
@@ -106,8 +105,7 @@
                 <p>4</p>
             </div>
         </div>
-        <p id="result2"></p>
-        <p id="result">Click Start Game to begin<br>Match the color to the number<br></p>
+        <p id="result"></p>
         <div class="guesscontainer" id="newcont">
             <form id="guess-form">
                 <div class="color-guess">
@@ -177,5 +175,9 @@
             </form>
         </div>
         <button id="checkGuess" type="button" onclick="checkGuessNumbers()">Check Guess</button>
+    </div>
+    <footer>
+        <p id="copyright">© The Fun Guys, 2023</p>
+    </footer>
     </body>
 </html>
