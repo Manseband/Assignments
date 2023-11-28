@@ -111,26 +111,6 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
-#result {
-    grid-column-start: game;
-    grid-column-end: guesses;
-    grid-row-start: score;
-    grid-row-end: checkbutton;
-
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    height: 40px;
-    width: 150px;
-    color: rgb(126, 178, 255);
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: auto;
-}
-
 @font-face {
     font-family: nav-font;
     src: url(resources/fFinish.ttf);
@@ -176,9 +156,9 @@ body {
     height: calc(100% - 120px); /* Subtracting height of navbar and footer */
     width: 100%;
     display: inline-grid;
-    grid-template-columns: [left-icon] 80px [left-space] auto [game] 600px [guesses] 600px [right-space] auto [right-icon] 80px;
+    grid-template-columns: [left-icon] 80px [left-space] auto [game] 440px [guesses] 440px [right-space] auto [right-icon] 80px;
     grid-template-rows: [icons] 80px [startbutton] 80px [game] auto [score] 80px [checkbutton] 80px;
-    align-items: center;
+    /* align-items: center; */
     background-color: lightgray;
 }
 
@@ -331,16 +311,36 @@ body {
   transform: translateY(2px);
 }
 
-#savebutton {
-    position: absolute;
-    border: 1px solid #999999;
-    border-radius: 8px;
-    padding: 15px 30px;
+#result {
+    grid-column-start: game;
+    grid-column-end: guesses;
+    grid-row-start: score;
+    grid-row-end: checkbutton;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+    color: rgb(126, 178, 255);
     text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    background-color: brown;
-    color: white;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+}
+
+#info {
+    grid-column-start: guesses;
+    grid-column-end: right-space;
+    grid-row-start: startbutton;
+    grid-row-end: game;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #3c4fe0;
+    margin: auto;
 }
 
 footer * {

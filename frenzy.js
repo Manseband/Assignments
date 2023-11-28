@@ -64,13 +64,11 @@ function startgame() {
     shuffledColors = ['blue', 'red', 'green', 'orange'];
     shuffleArray(shuffledColors);
 
-
     const startgameButton = document.getElementById('startgame');
     startgameButton.disabled = true;
 
     const checkguessButton = document.getElementById('checkGuess');
     checkguessButton.disabled = true;
-
 
     const shapes = document.querySelectorAll('.shape p');
 
@@ -82,7 +80,7 @@ function startgame() {
         assignedColors[shapeId] = { color: shuffledColors[i], number: shuffledNumbers[i] };
     }
 
-    console.log(assignedColors)
+    // console.log(assignedColors)
 
     setTimeout(() => {
         for (let i = 0; i < shapes.length; i++) {
@@ -115,7 +113,8 @@ function checkGuessNumbers() {
 
     computerguesses.push(getNumberForColor('blue'), getNumberForColor('red'), getNumberForColor('green'), getNumberForColor('orange'));
 
-    const resultElement = document.getElementById("result");
+    var resultElement = document.getElementById("result");
+    var infoElement = document.getElementById("info");
     let correctGuess = true;
 
 
@@ -132,8 +131,6 @@ function checkGuessNumbers() {
         }
     }
 
-
-
     const checkGuessButton = document.getElementById('checkGuess');
     checkGuessButton.disabled = true; 
 
@@ -141,7 +138,6 @@ function checkGuessNumbers() {
     for (const radioButton of radioButtons) {
         radioButton.setAttribute('disabled', true);
     }
-
 
     if (correctGuess) {
         score++;
@@ -151,11 +147,15 @@ function checkGuessNumbers() {
         }
         timer -= 500;
         resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
+        infoElement.style.color = "green";
+        infoElement.textContent = "Correct Guess!";
         startgame();
     } else {
         timer = 5000;
         score = 0;
         resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
+        infoElement.style.color = "red";
+        infoElement.textContent = "Wrong guess. Starting over!";
         startgame();
     }
 }
