@@ -115,7 +115,6 @@ body {
 }
 
 #testimonialsnew {
-    background-color: lightgray;
     display: inline-flex;
 }
 
@@ -169,14 +168,18 @@ background-color: rgba(0, 30, 100, 0.626)
 
 .howtoplay_title {
     color: rgb(54, 134, 255);
-    padding: 10px;
+    margin: 0px;
+    padding: 20px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    background-color: lightgray;
 }
 
 #submitbutton {
     margin-top: 350px;
+}
+
+#content {
+    background-color: lightgray;
 }
 
 footer * {
