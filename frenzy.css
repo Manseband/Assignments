@@ -159,6 +159,7 @@ body {
     grid-template-columns: [left-icon] 80px [left-space] auto [game] 440px [guesses] 440px [right-space] auto [right-icon] 80px;
     grid-template-rows: [icons] 80px [startbutton] 40px [game] 500px [score] 80px [empty] 80px;
     /* align-items: center; */
+    justify-content: space-between;
     background-color: lightgray;
 }
 
