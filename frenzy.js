@@ -66,6 +66,7 @@ function startgame() {
 
     const startgameButton = document.getElementById('startgame');
     startgameButton.disabled = true;
+    startgameButton.style.display = "none";
 
     const checkguessButton = document.getElementById('checkGuess');
     checkguessButton.disabled = true;

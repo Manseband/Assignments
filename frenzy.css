@@ -210,6 +210,10 @@ body {
   transform: translateY(2px);
 }
 
+#startgame:disabled {
+    background-image: radial-gradient(100% 100% at 100% 0, #616364 0, #000000 100%);
+}
+
 #instructionsicon {
     grid-column-start: right-icon;
     grid-row-start: icons;
