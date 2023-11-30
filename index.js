@@ -130,6 +130,13 @@ function changeMode(num) {
     }
 }
 
+function closemenu() {
+    showingSettings = false;
+    showingInstructions = false;
+    document.getElementById("settingsmenu").style.visibility = "hidden";
+    document.getElementById("instructionsmenu").style.visibility = "hidden";
+}
+
 async function restartGame() {
     document.getElementById("playButton").disabled = true;
     shapeGuesses = [];

@@ -188,7 +188,13 @@ function getAssignedNumber(color) {
 
 function switchTheme(img) {
     dark = !dark;
+    const body = document.body;
+    const radioLabels = document.querySelectorAll('.radio-group label');
+
     if (dark) {
+        radioLabels.forEach(label => {
+            label.style.color = 'white';
+        });
         img.src = "images/light.png";
         document.getElementById("navbar").style.backgroundColor = "black";
         var navdivs = document.getElementsByClassName("navdiv");
@@ -199,14 +205,18 @@ function switchTheme(img) {
             }
             current.firstElementChild.style.color = "white"; // Gets each hyperlink of each navdiv
         }
-        document.getElementById("content").style.backgroundColor = "gray";
+        document.getElementById("content").style.backgroundColor = "#454545";
         document.getElementById("result").style.backgroundColor = "black";
         document.getElementById("copyright").style.backgroundColor = "black";
         document.getElementById("copyright").style.color = "white";
-
         document.getElementById("modeicon").style.transform = "translateX(35px)";
+        
+
     }
     else {
+        radioLabels.forEach(label => {
+            label.style.color = 'black';
+        });
         img.src = "images/dark.png";
         document.getElementById("navbar").style.backgroundColor = "white";
         var navdivs = document.getElementsByClassName("navdiv");
@@ -225,6 +235,8 @@ function switchTheme(img) {
         document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
+
+
 
 function showInstructions() {
     showingInstructions = !showingInstructions;
@@ -255,4 +267,11 @@ function changeMode(num) {
             document.location.href = "frenzy.html";
             break;
     }
+}
+
+function closemenu() {
+    showingSettings = false;
+    showingInstructions = false;
+    document.getElementById("settingsmenu").style.visibility = "hidden";
+    document.getElementById("instructionsmenu").style.visibility = "hidden";
 }

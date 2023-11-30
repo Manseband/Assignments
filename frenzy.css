@@ -1,5 +1,6 @@
 html, body {
-    height: 100%; /* Necessary for flexbox centering */
+    height: 100%; 
+    margin: auto;/* Necessary for flexbox centering */
 }
 
 body {
@@ -85,8 +86,9 @@ body {
 }
 
 .radio-group label {
+    font-family: Arial, Helvetica, sans-serif;
     display: inline-block;
-    border: 2px solid #ccc;
+    border: 2px solid #5f5f5f;
     text-align: center;
     padding: 8px;
     width: 20px;
@@ -110,6 +112,7 @@ body {
     box-shadow: 0 0 5px #999;
     transition: box-shadow 0.3s ease;
 }
+
 
 @font-face {
     font-family: nav-font;
@@ -157,7 +160,7 @@ body {
     width: 100%;
     display: inline-grid;
     grid-template-columns: [left-icon] 80px [left-space] auto [game] 440px [guesses] 440px [right-space] auto [right-icon] 80px;
-    grid-template-rows: [icons] 80px [startbutton] 40px [game] 500px [score] 40px [empty] 80px;
+    grid-template-rows: [icons] 80px [startbutton] 20px [game] 500px [score] 40px [empty] 80px;
     /* align-items: center; */
     justify-content: space-between;
     background-color: lightgray;
@@ -282,6 +285,24 @@ body {
     background-color: rgb(163, 163, 163);
 }
 
+#closemenu {
+    padding: 15px 20px;
+    margin: auto;
+    display: block;
+    background-color: #db3734; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#closemenu:hover {
+    background-color: rgb(114, 10, 0); 
+    color: #fff; 
+}
+
 #result {
     grid-column-start: game;
     grid-column-end: guesses;
@@ -291,12 +312,12 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: bold;
-    height: 40px;
-    width: 150px;
+    height: 5px;
+    width: 350px;
     color: rgb(126, 178, 255);
     text-align: center;
+    padding-bottom: 25px;
     background-color: white;
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: auto;
@@ -345,7 +366,7 @@ body {
 
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: #3c4fe0;
+    color: #7081ff;
     margin: auto;
 }
 

@@ -163,6 +163,24 @@ button:disabled {
     background-color: rgb(163, 163, 163);
 }
 
+#closemenu {
+    padding: 15px 20px;
+    margin: auto;
+    display: block;
+    background-color: #db3734; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#closemenu:hover {
+    background-color: rgb(114, 10, 0); /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
 #game {
     grid-column-start: game;
     grid-column-end: right-space;
@@ -213,4 +231,5 @@ footer p {
     padding-top: 20px;
     padding-left: 10px;
     font-family: settings-font;
+    
 }
