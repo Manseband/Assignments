@@ -1,5 +1,5 @@
 html, body {
-    height: 100%; /* Necessary for flexbox centering, get rid of this? */
+    height: 100%;
 }
 
 body {
