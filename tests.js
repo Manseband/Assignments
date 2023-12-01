@@ -1,9 +1,19 @@
-var dark = false;
+window.onload = onLoad;
 
-function switchTheme(img) {
-    dark = !dark;
-    if (dark) {
-        img.src = "images/light.png";
+function onLoad() {
+    setTheme(); // Set the theme based on the value in local storage
+}
+
+function switchTheme() {
+    localStorage.setItem("dark", !JSON.parse(localStorage.getItem("dark")));
+    console.log(JSON.parse(localStorage.getItem("dark")));
+    setTheme();
+}
+
+function setTheme() {
+    var isDark = JSON.parse(localStorage.getItem("dark"));
+    if (isDark) {
+        document.getElementById("modeicon").src = "images/light.png";
         document.getElementById("navbar").style.backgroundColor = "black";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {
@@ -20,7 +30,7 @@ function switchTheme(img) {
         document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
     else {
-        img.src = "images/dark.png";
+        document.getElementById("modeicon").src = "images/dark.png";
         document.getElementById("navbar").style.backgroundColor = "white";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {

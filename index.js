@@ -1,4 +1,3 @@
-var dark = false;
 var showingSettings = false;
 var showingInstructions = false;
 var colors = ["red", "green", "orange", "blue"];
@@ -45,6 +44,9 @@ function onLoad() {
     if (localStorage.getItem("highscore") != null) {
         setHighScore(localStorage.getItem("highscore"));
     }
+
+    console.log(JSON.parse(localStorage.getItem("dark")));
+    setTheme(); // Set the theme based on the value in local storage
     
     shuffleArray(colors);
     setShapeColors("gameShape");
@@ -68,10 +70,16 @@ function toggleOnClick() {
     }
 }
 
-function switchTheme(img) {
-    dark = !dark;
-    if (dark) {
-        img.src = "images/light.png";
+function switchTheme() {
+    localStorage.setItem("dark", !JSON.parse(localStorage.getItem("dark")));
+    console.log(JSON.parse(localStorage.getItem("dark")));
+    setTheme();
+}
+
+function setTheme() {
+    var isDark = JSON.parse(localStorage.getItem("dark"));
+    if (isDark) {
+        document.getElementById("modeicon").src = "images/light.png";
         document.getElementById("navbar").style.backgroundColor = "black";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {
@@ -88,7 +96,7 @@ function switchTheme(img) {
         document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
     else {
-        img.src = "images/dark.png";
+        document.getElementById("modeicon").src = "images/dark.png";
         document.getElementById("navbar").style.backgroundColor = "white";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {

@@ -27,7 +27,7 @@ body {
 }
 
 .navdiv {
-    width: 23vw; /* Not quite one quarter to make room for the dark mode icon on the right */
+    width: 24.2vw; /* Not quite one quarter to make room for the dark mode icon on the right */
     border-right: 4px solid black;
     float: left;
 }
@@ -41,16 +41,8 @@ body {
     font-weight: bold;
 }
 
-#icondiv {
-    width: 40px;
-    height: 40px;
-    float: left;
-    border-right: none; /* Overwrite the border for the icon */
-}
-
-#modeicon {
-    padding-left: 15px;
-    transition: 0.3s;
+#last {
+    border-right: none;
 }
 
 .snip1533 {
@@ -89,7 +81,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     color: rgb(54, 134, 255);
     content: "\263B";
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
     font-size: 32px;
     font-style: normal;
     left: 50%;
@@ -121,6 +113,7 @@ body {
 
 #testimonialsnew {
     display: inline-flex;
+    font-family: 'Poppins', sans-serif;
 }
 
 #testimonial-form-2 {
@@ -135,7 +128,6 @@ body {
 
 #testimonial-form-2 h2 {
     color: #333;
-    font-family:'Poppins', sans-serif;
     font-size: 20px;
 }
 

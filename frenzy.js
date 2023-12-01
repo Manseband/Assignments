@@ -28,15 +28,16 @@ function onLoad() {
 
     document.getElementById("shufflebox").disabled = "true"; // Disable shuffling colors in this mode
 
+    console.log(JSON.parse(localStorage.getItem("dark")));
+    setTheme(); // Set the theme based on the value in local storage
+
     startup();
 }
-
 
 function startup() {
     const resultElement = document.getElementById("result");
     resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
 }
-
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -45,14 +46,11 @@ function shuffleArray(array) {
     }
 }
 
-
 let shuffledNumbers = [];
 let shuffledColors = [];
 let assignedColors = {};
 let score = 0;
 let timer = 5000;
-
-
 
 function startgame() {
 
@@ -80,8 +78,6 @@ function startgame() {
         shape.style.backgroundColor = shuffledColors[i]; 
         assignedColors[shapeId] = { color: shuffledColors[i], number: shuffledNumbers[i] };
     }
-
-    // console.log(assignedColors)
 
     setTimeout(() => {
         for (let i = 0; i < shapes.length; i++) {
@@ -186,16 +182,21 @@ function getAssignedNumber(color) {
     return null;
 }
 
-function switchTheme(img) {
-    dark = !dark;
-    const body = document.body;
+function switchTheme() {
+    localStorage.setItem("dark", !JSON.parse(localStorage.getItem("dark")));
+    console.log(JSON.parse(localStorage.getItem("dark")));
+    setTheme();
+}
+
+function setTheme() {
+    var isDark = JSON.parse(localStorage.getItem("dark"));
     const radioLabels = document.querySelectorAll('.radio-group label');
 
-    if (dark) {
+    if (isDark) {
         radioLabels.forEach(label => {
             label.style.color = 'white';
         });
-        img.src = "images/light.png";
+        document.getElementById("modeicon").src = "images/light.png";
         document.getElementById("navbar").style.backgroundColor = "black";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {
@@ -210,14 +211,12 @@ function switchTheme(img) {
         document.getElementById("copyright").style.backgroundColor = "black";
         document.getElementById("copyright").style.color = "white";
         document.getElementById("modeicon").style.transform = "translateX(35px)";
-        
-
     }
     else {
         radioLabels.forEach(label => {
             label.style.color = 'black';
         });
-        img.src = "images/dark.png";
+        document.getElementById("modeicon").src = "images/dark.png";
         document.getElementById("navbar").style.backgroundColor = "white";
         var navdivs = document.getElementsByClassName("navdiv");
         for (var i = 0; i < navdivs.length; i++) {
@@ -235,8 +234,6 @@ function switchTheme(img) {
         document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
-
-
 
 function showInstructions() {
     showingInstructions = !showingInstructions;
