@@ -37,9 +37,9 @@ function onLoad() {
     });
 
     var slider = document.getElementById("brightnessRange");
+    slider.value = brightness;
     slider.oninput = function() {
         brightness = this.value;
-        console.log(brightness);
     }
 
     if (localStorage.getItem("highscore") != null) {

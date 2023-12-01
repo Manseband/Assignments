@@ -157,6 +157,14 @@ button:disabled {
     margin-top: 20px;
 }
 
+.menuinput p {
+    margin: 5px;
+}
+
+#brightnessRange {
+    max-width: 140px;
+}
+
 #menurow1 {
     background-color: rgb(163, 163, 163);
 }
@@ -167,10 +175,6 @@ button:disabled {
 
 #menurow3 {
     background-color: rgb(163, 163, 163);
-}
-
-#brightnessRange {
-    max-width: 140px;
 }
 
 #closemenu {
