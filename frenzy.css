@@ -140,6 +140,11 @@ body {
 
 .navdiv a {
     color: black;
+    text-decoration: none;
+}
+
+.navdiv a:hover {
+    font-weight: bold;
 }
 
 #icondiv {
