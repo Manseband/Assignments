@@ -9,6 +9,7 @@ var shapeGuesses; // An array of divs
 var score = 0; // The score of the current round
 var highscore = 0; // The highscore of the current session
 var guessing;
+var brightness = 10; /* The higher the number the brighter the color (up to 15) */
 
 window.onload = onLoad;
 
@@ -34,6 +35,12 @@ function onLoad() {
     select.addEventListener("change", function() {
         changeMode(this.value);
     });
+
+    var slider = document.getElementById("brightnessRange");
+    slider.oninput = function() {
+        brightness = this.value;
+        console.log(brightness);
+    }
 
     if (localStorage.getItem("highscore") != null) {
         setHighScore(localStorage.getItem("highscore"));
@@ -249,8 +256,7 @@ function setShapeColors(name) {
 function genRandomColor() { /* Hard mode: have the colors be "closer" to each other */
     var letters = "0123456789ABCDEF".split("");
     var color = "#";
-    var brightness = 15; /* The higher the number the brighter the color (up to 15) */
-    var chars = 6;
+    const chars = 6;
     for (var i = 0; i < chars; i++) {
         color += letters[Math.round(Math.random() * Math.min(brightness, 15))];
     }

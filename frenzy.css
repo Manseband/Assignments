@@ -253,9 +253,9 @@ body {
     z-index: 1;
 }
 
-.menurow {
+#settingsmenu .menurow {
     display: grid;
-    grid-template-columns: auto 100px; /* Each row is made up of two individual columns, one for the text and one for the checkbox */
+    grid-template-columns: auto 150px; /* Each row is made up of two individual columns, one for the text and one for the input */
 }
 
 .popupmenu h1 {
@@ -270,6 +270,7 @@ body {
 
 .menuentry h3 {
     padding-left: 50px;
+    padding-right: 50px;
     word-wrap: break-word;
 }
 
