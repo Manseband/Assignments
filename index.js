@@ -93,7 +93,7 @@ function setTheme() {
         document.getElementById("copyright").style.backgroundColor = "black";
         document.getElementById("copyright").style.color = "white";
 
-        document.getElementById("modeicon").style.transform = "translateX(35px)";
+        // document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
     else {
         document.getElementById("modeicon").src = "images/dark.png";
@@ -110,7 +110,7 @@ function setTheme() {
         document.getElementById("copyright").style.backgroundColor = "white";
         document.getElementById("copyright").style.color = "black";
 
-        document.getElementById("modeicon").style.transform = "translateX(0px)";
+        // document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
 

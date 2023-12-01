@@ -210,7 +210,6 @@ function setTheme() {
         document.getElementById("result").style.backgroundColor = "black";
         document.getElementById("copyright").style.backgroundColor = "black";
         document.getElementById("copyright").style.color = "white";
-        document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
     else {
         radioLabels.forEach(label => {
@@ -230,8 +229,6 @@ function setTheme() {
         document.getElementById("result").style.backgroundColor = "white";
         document.getElementById("copyright").style.backgroundColor = "white";
         document.getElementById("copyright").style.color = "black";
-
-        document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
 

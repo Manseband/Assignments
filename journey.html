@@ -1,9 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-    <title>Title Here - High Scores</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script> <!-- For now -->
+    <meta charset="UTF-8">
+    <title>HueHunt - Our Journey</title>
+    <link rel="stylesheet" href="journey.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div id="navbar">
@@ -12,21 +13,22 @@
                 <a href="index.html">PLAY</a>
             </div>
             <div class="navdiv">
-                <a href="">LEADERBOARDS</a>
-            </div>
-            <div class="navdiv">
                 <a href="tests.html">TESTIMONIALS</a>
             </div>
             <div class="navdiv">
-                <a href="about.html">ABOUT US</a>
+                <a href="">ABOUT US</a>
             </div>
-            <div class="navdiv" id="icondiv">
-                <img src="images/dark.png" alt="" onclick="switchModes(this)" width="40px" height="40px" id="modeicon">
+            <div class="navdiv" id="last">
+                <a href="journey.html">OUR JOURNEY</a>
             </div>
         </nav>
     </div>
     <div id="content">
-    
+        <video id="journeyvideo" controls>
+            <source src="images/ourjourney.mp4" type="video/mp4">
+            <source src="images/ourjourney.ogg" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>   
     </div>
     <footer>
         <p id="copyright">© The Fun Guys, 2023</p>

@@ -1,0 +1,64 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: nav-font;
+    src: url(resources/fFinish.ttf);
+}
+
+@font-face {
+    font-family: settings-font;
+    src: url(resources/ChocolatesRegular.otf);
+}
+
+#navbar {
+    height: 40px;
+    background-color: white;
+    font-family: nav-font;
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.navdiv {
+    width: 24.2vw;
+    border-right: 4px solid black;
+    float: left;
+}
+
+.navdiv a {
+    color: black;
+    text-decoration: none;
+}
+
+.navdiv a:hover {
+    font-weight: bold;
+}
+
+#last {
+    border-right: none;
+}
+
+#journeyvideo {
+    width: 100vw;
+    height: calc(100vh - 125px);
+}
+
+footer * {
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    background-color: white;
+}
+
+footer p {
+    padding-top: 20px;
+    padding-left: 10px;
+    font-family: settings-font;
+}
