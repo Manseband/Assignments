@@ -45,7 +45,6 @@ function onLoad() {
         setHighScore(localStorage.getItem("highscore"));
     }
 
-    console.log(JSON.parse(localStorage.getItem("dark")));
     setTheme(); // Set the theme based on the value in local storage
     
     shuffleArray(colors);
@@ -72,7 +71,6 @@ function toggleOnClick() {
 
 function switchTheme() {
     localStorage.setItem("dark", !JSON.parse(localStorage.getItem("dark")));
-    console.log(JSON.parse(localStorage.getItem("dark")));
     setTheme();
 }
 
@@ -92,8 +90,6 @@ function setTheme() {
         document.getElementById("content").style.backgroundColor = "gray";
         document.getElementById("copyright").style.backgroundColor = "black";
         document.getElementById("copyright").style.color = "white";
-
-        // document.getElementById("modeicon").style.transform = "translateX(35px)";
     }
     else {
         document.getElementById("modeicon").src = "images/dark.png";
@@ -109,8 +105,6 @@ function setTheme() {
         document.getElementById("content").style.backgroundColor = "lightgray";
         document.getElementById("copyright").style.backgroundColor = "white";
         document.getElementById("copyright").style.color = "black";
-
-        // document.getElementById("modeicon").style.transform = "translateX(0px)";
     }
 }
 

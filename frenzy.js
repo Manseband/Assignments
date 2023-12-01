@@ -28,7 +28,6 @@ function onLoad() {
 
     document.getElementById("shufflebox").disabled = "true"; // Disable shuffling colors in this mode
 
-    console.log(JSON.parse(localStorage.getItem("dark")));
     setTheme(); // Set the theme based on the value in local storage
 
     startup();
@@ -184,7 +183,6 @@ function getAssignedNumber(color) {
 
 function switchTheme() {
     localStorage.setItem("dark", !JSON.parse(localStorage.getItem("dark")));
-    console.log(JSON.parse(localStorage.getItem("dark")));
     setTheme();
 }
 
