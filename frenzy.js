@@ -1,4 +1,4 @@
-var highscore = parseInt(localStorage.getItem('highscore')) || 0;
+var highscore = parseInt(localStorage.getItem('highscore2')) || 0; // A separate highscore variable is used here to differentiate the two gamemodes
 var showingSettings = false;
 var showingInstructions = false;
 var dark = false;
@@ -144,7 +144,7 @@ function checkGuessNumbers() {
         score++;
         if (score > highscore) {
             highscore = score;
-            localStorage.setItem('highscore', highscore);
+            localStorage.setItem('highscore2', highscore);
         }
         timer -= 500;
         resultElement.textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
@@ -163,7 +163,7 @@ function checkGuessNumbers() {
 
 function resetScore() {
     highscore = 0;
-    localStorage.setItem('highscore', 0);
+    localStorage.setItem('highscore2', 0);
     document.getElementById("result").textContent = `Your score: ${score}  HIGH SCORE: ${highscore}`;
 }
 
